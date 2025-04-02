@@ -1,0 +1,5 @@
+// Vulnerability: Dangerous use of eval()
+const userInput = "console.log('Hello, world!')";
+eval(userInput);  // Executes the code provided by user input
+
+// This can allow attackers to inject arbitrary JavaScript code, leading to potential security risks.
