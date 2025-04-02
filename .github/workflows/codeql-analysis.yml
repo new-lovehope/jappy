@@ -1,0 +1,26 @@
+name: "CodeQL Analysis"  # This is the name of the GitHub Action workflow.
+
+on:
+  push:  # This triggers the workflow when code is pushed to the repository.
+    branches: [master]  # It will run the scan when code is pushed to the main branch.
+  pull_request:  # This triggers the workflow when a pull request is created.
+    branches: [master]  # It will run the scan when a pull request is targeting the main branch.
+
+jobs:
+  analyze:
+    runs-on: ubuntu-latest  # This specifies that the job will run on an Ubuntu environment.
+    
+    steps:
+      - name: Checkout code  # Step to checkout your repository's code.
+        uses: actions/checkout@v2
+
+      - name: Set up Node.js  # Set up the Node.js environment for JavaScript projects.
+        uses: actions/setup-node@v2
+        with:
+          node-version: '14'  # Replace this with the Node.js version you are using (e.g., '16' or '14').
+
+      - name: Set up CodeQL  # Set up the CodeQL action for vulnerability analysis.
+        uses: github/codeql-action/setup@v1
+
+      - name: Analyze with CodeQL  # This step runs the CodeQL analysis on your code.
+        uses: github/codeql-action/analyze@v1
